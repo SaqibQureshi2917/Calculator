@@ -2,9 +2,9 @@ let expression = "";
 
 const display = document.getElementById('display');
 
-// Operator aur Numbers dono ko screen par dikhane ke liye
+// here i am showing the numbers and operator on screen for users
 function appendSymbol(symbol) {
-    // Agar screen par "Error" hai to clear kar do
+    // if there is any error clear it 
     if (display.value === "Error") expression = "";
     
     expression += symbol;
@@ -23,14 +23,13 @@ function deleteLast() {
 
 function calculate() {
     try {
-        // Manual Calculation bina eval() ke mushkil hoti hai multi-step ke liye, 
-        // Lekin aapke liye ek safe method use kiya hai jo expression solve karega
+        // this is the code were i am trying to calculate the numbers first we convert the string to the real math then perform it  
         if (expression === "") return;
         
         let result = Function('"use strict";return (' + expression + ')')();
         
         display.value = result;
-        expression = result.toString(); // Result ko hi next calculation ke liye save kar lo
+        expression = result.toString(); // Result save for the next calculation if user want the result for the more calculation user can use the result
     } catch (error) {
         display.value = "Error";
         expression = "";
